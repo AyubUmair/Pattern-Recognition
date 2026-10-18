@@ -6,6 +6,12 @@ Start with the [training guide](TRAINING_GUIDE.md) to run your own RealWaste exp
 
 [Open the notebook in Colab](https://colab.research.google.com/github/AyubUmair/Pattern-Recognition/blob/hakam/assignment-improvements/EN3150_A03.ipynb)
 
+## Recorded 30-epoch Model B run
+
+The Model B-only 30-epoch run with augmentation, weight decay, label smoothing and a learning-rate scheduler achieved **66.76% test accuracy**, versus **71.11%** for the earlier recorded baseline (-4.35 percentage points). Its best validation accuracy was **68.16%** at epoch 28. Both runs use the same RealWaste split and 9,033-parameter architecture. This is a one-seed comparison with multiple training changes. The earlier configuration remains the stronger Model B choice on validation. The augmented configuration is retained as an experiment, rather than a demonstrated accuracy improvement.
+
+See the [complete run report and plots](results/model_b_improved_30epochs_seed42/discussion.md). The saved checkpoint independently reproduces the recorded test metrics; the check results are in that directory's `validation.json`.
+
 ## Optimizer comparison
 
 The notebook includes a self-contained experiment comparing Adam, SGD, and SGD with momentum on Model B. Each optimizer has two learning-rate candidates and receives the same training budget. Every trial starts from identical weights and uses identical batch orders. Initial-state and per-epoch sample-order hashes verify these controls.

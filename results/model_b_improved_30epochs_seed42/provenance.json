@@ -1,0 +1,29 @@
+{
+  "source_commit": "fb342c09beb0063769fd75cdf018b8a58f828a98",
+  "notebook_source_sha256": "4b75fed0f60efb489f11ad7b240f717e4726d6ac8f115c902ecdfb17b65a41d1",
+  "source_file_sha256": {
+    "EN3150_A03.ipynb": "0294418ee4fb53768d160722c2b8d9869f4866dc74c4dead6eea2e84e53707e7",
+    "run_training.py": "7ab8c950cae47f4ad3f046b186771f0fa33b750cc74335653a2f7b4b933161ae",
+    "run_optimizer_comparison.py": "f95f78140180b4bfbb6cd2e04a2e0859600c23aa4a347f47709964998977404b"
+  },
+  "command": "python -u run_training.py --models b --epochs 30 --device cpu --threads 4 --output results/model_b_improved_30epochs_seed42",
+  "recorded_at_utc": "2026-10-18T18:54:42.741637+00:00",
+  "python_version": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+  "logical_cpu_count": 8,
+  "torch_threads": 4,
+  "torch_interop_threads": 2,
+  "data_pipeline": "Original RealWaste files decoded from disk; resized to 64x64; training-only random horizontal flip, rotation and colour jitter; ImageNet normalization; no tensor cache; num_workers=0",
+  "timing_scope": "Training and validation, including image loading and augmentation; excludes initial dataset discovery, test evaluation, plotting and checkpoint export",
+  "package_versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "numpy": "2.5.2",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2",
+    "scikit-learn": "1.9.1",
+    "Pillow": "12.3.0"
+  },
+  "completed_at_utc": "2026-10-18T19:24:37.931096+00:00"
+}
