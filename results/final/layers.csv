@@ -1,0 +1,32 @@
+Model,Layer,Operation,Output shape,Details,Trainable parameters,Conv/linear MACs
+Model A,features.0,Conv2d,16x64x64,3 to 16 channels; kernel 3x3; stride 1; groups 1; bias True,448,1769472
+Model A,features.1,ReLU,16x64x64,,0,0
+Model A,features.2,MaxPool2d,16x32x32,kernel 2; stride 2,0,0
+Model A,features.3,Conv2d,32x32x32,16 to 32 channels; kernel 3x3; stride 1; groups 1; bias True,4640,4718592
+Model A,features.4,ReLU,32x32x32,,0,0
+Model A,features.5,MaxPool2d,32x16x16,kernel 2; stride 2,0,0
+Model A,features.6,Conv2d,64x16x16,32 to 64 channels; kernel 3x3; stride 1; groups 1; bias True,18496,4718592
+Model A,features.7,ReLU,64x16x16,,0,0
+Model A,features.8,MaxPool2d,64x8x8,kernel 2; stride 2,0,0
+Model A,classifier.0,Flatten,4096,,0,0
+Model A,classifier.1,Linear,128,4096 to 128 units; bias True,524416,524288
+Model A,classifier.2,ReLU,128,,0,0
+Model A,classifier.3,Linear,9,128 to 9 units; bias True,1161,1152
+Model B,features.0,Conv2d,16x32x32,3 to 16 channels; kernel 3x3; stride 2; groups 1; bias False,432,442368
+Model B,features.1,BatchNorm2d,16x32x32,16 channels; learned scale and offset,32,0
+Model B,features.2,ReLU,16x32x32,,0,0
+Model B,features.3.depthwise,Conv2d,16x16x16,16 to 16 channels; kernel 3x3; stride 2; groups 16; bias False,144,36864
+Model B,features.3.pointwise,Conv2d,32x16x16,16 to 32 channels; kernel 1x1; stride 1; groups 1; bias False,512,131072
+Model B,features.3.bn,BatchNorm2d,32x16x16,32 channels; learned scale and offset,64,0
+Model B,features.3.relu,ReLU,32x16x16,,0,0
+Model B,features.4.depthwise,Conv2d,32x8x8,32 to 32 channels; kernel 3x3; stride 2; groups 32; bias False,288,18432
+Model B,features.4.pointwise,Conv2d,64x8x8,32 to 64 channels; kernel 1x1; stride 1; groups 1; bias False,2048,131072
+Model B,features.4.bn,BatchNorm2d,64x8x8,64 channels; learned scale and offset,128,0
+Model B,features.4.relu,ReLU,64x8x8,,0,0
+Model B,features.5.depthwise,Conv2d,64x8x8,64 to 64 channels; kernel 3x3; stride 1; groups 64; bias False,576,36864
+Model B,features.5.pointwise,Conv2d,64x8x8,64 to 64 channels; kernel 1x1; stride 1; groups 1; bias False,4096,262144
+Model B,features.5.bn,BatchNorm2d,64x8x8,64 channels; learned scale and offset,128,0
+Model B,features.5.relu,ReLU,64x8x8,,0,0
+Model B,features.6,AdaptiveAvgPool2d,64x1x1,global average pooling to 1x1,0,0
+Model B,classifier.0,Flatten,64,,0,0
+Model B,classifier.1,Linear,9,64 to 9 units; bias True,585,576

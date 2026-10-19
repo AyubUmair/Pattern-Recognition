@@ -1,0 +1,12 @@
+{
+  "MobileNetV2": {
+    "torchvision_weights": "MobileNet_V2_Weights.IMAGENET1K_V2",
+    "url": "https://download.pytorch.org/models/mobilenet_v2-7ebf99e0.pth",
+    "sha256": "7ebf99e03e254b273379b23edca7ec0da9f48273b23a332b93c1c99d49e86e8f"
+  },
+  "EfficientNet-B0": {
+    "torchvision_weights": "EfficientNet_B0_Weights.IMAGENET1K_V1",
+    "url": "https://download.pytorch.org/models/efficientnet_b0_rwightman-7f5810bc.pth",
+    "sha256": "7f5810bc96def8f7552d5b7e68d53c4786f81167d28291b21c0d90e1fca14934"
+  }
+}
