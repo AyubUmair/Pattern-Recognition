@@ -6,6 +6,10 @@ Start with the [training guide](TRAINING_GUIDE.md) to run your own RealWaste exp
 
 [Open the notebook in Colab](https://colab.research.google.com/github/AyubUmair/Pattern-Recognition/blob/hakam/assignment-improvements/EN3150_A03.ipynb)
 
+## Controlled horizontal-flip experiment
+
+`run_augmentation_ablation.py` compares the baseline with training-only horizontal flips at probability 0.5. Both runs use Adam at 0.001, plain cross-entropy, 30 epochs, identical starting weights, identical batch orders, and the same dataset split. This isolates one augmentation change after the combined augmentation/regularization experiment below. Only the configuration selected using validation is evaluated on the test set. See the [training guide](TRAINING_GUIDE.md) for commands and controls.
+
 ## Recorded 30-epoch Model B run
 
 The Model B-only 30-epoch run with augmentation, weight decay, label smoothing and a learning-rate scheduler achieved **66.76% test accuracy**, versus **71.11%** for the earlier recorded baseline (-4.35 percentage points). Its best validation accuracy was **68.16%** at epoch 28. Both runs use the same RealWaste split and 9,033-parameter architecture. This is a one-seed comparison with multiple training changes. The earlier configuration remains the stronger Model B choice on validation. The augmented configuration is retained as an experiment, rather than a demonstrated accuracy improvement.

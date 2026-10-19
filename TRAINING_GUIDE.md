@@ -59,3 +59,21 @@ Synthetic results go under `.local/` and are not assignment accuracy measurement
 Each run writes `experiment.json`, `model_comparison.csv`, per-model metrics and classification reports, labelled confusion matrices, training/validation plots, and trained state dictionaries. The notebook displays the comparison table and saved plots. Checkpoints are excluded from Git. The comparison distinguishes total parameters from final-stage trainable parameters, tensor storage from measured checkpoint size, and estimated convolution/linear MACs from timing. MAC estimates exclude pooling, normalization, activations and framework overhead.
 
 The recorded 71.11% Model B test accuracy belongs to the earlier controlled experiment without augmentation, weight decay, label smoothing or a scheduler. Its histories and source snapshot are retained under `results/optimizer_comparison/`. Model B has now completed a full 30-epoch run with the new defaults: 66.76% test accuracy and 68.16% best validation accuracy. See the [recorded run report](results/model_b_improved_30epochs_seed42/discussion.md). Model A and the two pretrained models have passed workflow checks for the new pipeline; their full training with these new defaults is still pending. The earlier configuration remains the stronger Model B choice on validation. The augmented configuration is retained as an experiment, rather than a demonstrated accuracy improvement. Changes to several training settings prevent attributing any accuracy difference to one setting alone.
+
+## Change one setting at a time
+
+The horizontal-flip experiment trains a fresh control and a fresh augmented model with matching initialization and per-epoch sample orders. The only change is a 50% chance of a horizontal flip on each training image. Both use the original Model B, Adam at 0.001, batch size 32, unsmoothed cross-entropy, zero weight decay, no scheduler and no early stopping.
+
+```powershell
+python run_augmentation_ablation.py --epochs 30
+```
+
+This runner uses its explicit baseline controls rather than the notebook's exploratory regularization settings. Both trials use the same verified normalized tensors cached in RAM. Flipping after normalization gives the same pixels as flipping the resized RGB image before normalization; an example from every class checks that equivalence. Validation and test images receive no random transforms.
+
+Each trial restores its best validation-accuracy checkpoint. The configuration with higher validation accuracy wins; lower validation loss at that checkpoint breaks ties. Only the winner receives test evaluation. A strict checkpoint reload must reproduce its confusion matrix and metrics. Initialization and sample-order hashes, all histories, source provenance, comparison CSV, plots and reloaded-checkpoint predictions are saved under `results/augmentation_ablation/`. Checkpoints stay local and are excluded from Git.
+
+Use `--output results/flip_trial_02` for another run; the runner protects existing completed results. Run the synthetic workflow check without changing assignment results:
+
+```powershell
+python run_augmentation_ablation.py --smoke-test
+```
