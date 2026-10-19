@@ -10,9 +10,13 @@ Start with the [training guide](TRAINING_GUIDE.md) to run your own RealWaste exp
 
 `run_augmentation_ablation.py` compares the baseline with training-only horizontal flips at probability 0.5. Both runs use Adam at 0.001, plain cross-entropy, 30 epochs, identical starting weights, identical batch orders, and the same dataset split. This isolates one augmentation change after the combined augmentation/regularization experiment below. Only the configuration selected using validation is evaluated on the test set. See the [training guide](TRAINING_GUIDE.md) for commands and controls.
 
+The paired 30-epoch test reached **69.28% validation accuracy without augmentation** and **68.86% with horizontal flips**. Horizontal flips reduced best validation accuracy by 0.42 percentage points in this paired run. Validation selected **No augmentation**; that checkpoint achieved **71.11% test accuracy**. Only the selected configuration received test evaluation. Keep the no-augmentation configuration as the current Model B choice. Horizontal flips alone did not win this validation comparison.
+
+See the [full controlled-experiment report and plots](results/augmentation_ablation/discussion.md).
+
 ## Recorded 30-epoch Model B run
 
-The Model B-only 30-epoch run with augmentation, weight decay, label smoothing and a learning-rate scheduler achieved **66.76% test accuracy**, versus **71.11%** for the earlier recorded baseline (-4.35 percentage points). Its best validation accuracy was **68.16%** at epoch 28. Both runs use the same RealWaste split and 9,033-parameter architecture. This is a one-seed comparison with multiple training changes. The earlier configuration remains the stronger Model B choice on validation. The augmented configuration is retained as an experiment, rather than a demonstrated accuracy improvement.
+The Model B-only 30-epoch run with augmentation, weight decay, label smoothing and a learning-rate scheduler achieved **66.76% test accuracy**, versus **71.11%** for the earlier recorded baseline (-4.35 percentage points). Its best validation accuracy was **68.16%** at epoch 28. Both runs use the same RealWaste split and 9,033-parameter architecture. This is a one-seed comparison with multiple training changes. The earlier baseline had higher validation accuracy than that combined-settings run. The augmented configuration is retained as an experiment, rather than a demonstrated accuracy improvement.
 
 See the [complete run report and plots](results/model_b_improved_30epochs_seed42/discussion.md). The saved checkpoint independently reproduces the recorded test metrics; the check results are in that directory's `validation.json`.
 
