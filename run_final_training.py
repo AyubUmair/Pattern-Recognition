@@ -4,7 +4,6 @@ import datetime
 import hashlib
 import importlib.metadata
 import json
-import subprocess
 from pathlib import Path
 
 import matplotlib
@@ -16,7 +15,7 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader, Subset, TensorDataset
 
-from run_optimizer_comparison import NOTEBOOK, ROOT, cached_images, notebook_namespace
+from run_optimizer_comparison import NOTEBOOK, ROOT, cached_images, notebook_namespace, source_revision
 
 
 def run_final_models(namespace, split_data, class_names, split_indices, settings,
@@ -164,13 +163,14 @@ def main():
         dataset, image_dataset = cached_images(namespace, data_dir, ROOT / ".local/realwaste_64.pt")
         _, _, indices = namespace["prepare_realwaste_datasets"](data_dir, 64, False, 42)
         classes = image_dataset.classes
-        reuse_model_b = None if args.fresh_model_b else ROOT / "results/augmentation_ablation"
+        reuse_checkpoint = ROOT / "results/augmentation_ablation/checkpoints/selected_model_b.pt"
+        reuse_model_b = ROOT / "results/augmentation_ablation" if not args.fresh_model_b and args.epochs == 30 and reuse_checkpoint.is_file() else None
     output_dir.mkdir(parents=True, exist_ok=True)
     sources = ["".join(cell.get("source", [])) for cell in notebook["cells"]]
     snapshot = json.dumps(sources)
     (output_dir / "source_snapshot.json").write_text(snapshot, encoding="utf-8")
     provenance = {
-        "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "source_commit": source_revision(),
         "notebook_source_sha256": hashlib.sha256(snapshot.encode("utf-8")).hexdigest(),
         "source_file_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in [Path(__file__), NOTEBOOK, ROOT / "run_optimizer_comparison.py"]},
         "package_versions": {name: importlib.metadata.version(name) for name in ["torch", "torchvision", "numpy", "pandas", "matplotlib", "scikit-learn", "Pillow"]},

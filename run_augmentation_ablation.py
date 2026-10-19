@@ -4,7 +4,6 @@ import hashlib
 import importlib.metadata
 import json
 import platform
-import subprocess
 from pathlib import Path
 
 import matplotlib
@@ -20,7 +19,7 @@ from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, Dataset, Subset, TensorDataset
 from torchvision import transforms
 
-from run_optimizer_comparison import NOTEBOOK, ROOT, cached_images, notebook_namespace
+from run_optimizer_comparison import NOTEBOOK, ROOT, cached_images, notebook_namespace, source_revision
 
 
 class HorizontalFlipView(Dataset):
@@ -172,7 +171,7 @@ def main():
         "checkpoint_rule": "first epoch attaining each trial's highest validation accuracy",
         "data_pipeline": "Identical verified normalized image tensors cached in RAM; train-only horizontal flip for the augmented trial",
         "trial_order": ["No augmentation", "Horizontal flip (p=0.5)"],
-        "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "source_commit": source_revision(),
         "notebook_source_sha256": hashlib.sha256(snapshot.encode("utf-8")).hexdigest(),
         "source_file_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in [Path(__file__), NOTEBOOK, ROOT / "run_optimizer_comparison.py"]},
         "python_version": platform.python_version(),

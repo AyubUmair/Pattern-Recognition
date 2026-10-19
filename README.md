@@ -1,10 +1,37 @@
-# EN3150 Assignment 03
+# EN3150 Assignment 03 - final RealWaste version
 
-This project classifies RealWaste images using a standard CNN, a custom lightweight CNN, and pretrained lightweight networks. Model B has 9,033 trainable parameters.
+Use **[EN3150_A03_Final.ipynb](EN3150_A03_Final.ipynb)** for the final RealWaste code and saved outputs. It contains all four models, the shared data pipeline, checkpoint selection, optimizer comparison, metrics and plots. The default `RUN_TRAINING=False` displays recorded results; set it to `True` to reproduce training from scratch.
 
-Start with the [training guide](TRAINING_GUIDE.md) to run your own RealWaste experiment. The notebook now has editable settings, training-only augmentation, regularization, a learning-rate scheduler, and two-stage MobileNetV2/EfficientNet-B0 fine-tuning. All four models retain the same RealWaste split and 64 by 64 inputs. New-run results are saved separately from the historical baseline below.
+[Open this branch in Colab](https://colab.research.google.com/github/AyubUmair/Pattern-Recognition/blob/hakam/assignment-improvements/EN3150_A03_Final.ipynb) | [Open main in Colab after merging](https://colab.research.google.com/github/AyubUmair/Pattern-Recognition/blob/main/EN3150_A03_Final.ipynb)
 
-[Open the notebook in Colab](https://colab.research.google.com/github/AyubUmair/Pattern-Recognition/blob/hakam/assignment-improvements/EN3150_A03.ipynb)
+| Model | Parameters | Test accuracy | Weighted F1 | Completed epochs |
+| --- | ---: | ---: | ---: | ---: |
+| Model A | 549,161 | 70.83% | 0.7080 | 30 |
+| Model B | 9,033 | 71.11% | 0.7058 | 30 |
+| MobileNetV2 | 2,235,401 | 77.56% | 0.7755 | 25 |
+| EfficientNet-B0 | 4,019,077 | 81.63% | 0.8156 | 25 |
+
+All models use RealWaste, RGB inputs at 64 by 64, and exactly the same 70/15/15 split. Model A and Model B each complete 30 epochs. The pretrained models use classifier-head training followed by backbone fine-tuning, retaining the best validation checkpoint across both stages. Every final checkpoint passes a strict reload and deterministic-logit check.
+
+For the LaTeX report, use [report_tables.tex](results/final/report_tables.tex), [exact metrics](results/final/metrics_for_report.csv), and [interpretation notes](results/final/notes_for_report.md). The PNG files in `results/final/` are ready to include in the report. Complete histories and provenance are in [experiment.json](results/final/experiment.json).
+
+The [code submission ZIP](submission/EN3150_A03_RealWaste_Code.zip) contains the final notebook, source files, dependencies and result assets. Data, pretrained weights, trained checkpoints, virtual environments and Git internals are excluded. See [FINAL_HANDOFF.md](FINAL_HANDOFF.md) for merge and submission steps.
+
+## Dataset choice
+
+`EN3150_A03_new.ipynb` is the friend's digits experiment already on `main`; it is preserved. It uses a different dataset from this final RealWaste version. Your group should choose one dataset for the report and code submission. Use this notebook's RealWaste tables only with a RealWaste report.
+
+## Reproduce
+
+Use Python 3.12 and install `requirements.txt`; for local notebook tools install `requirements-notebook.txt`. In Colab, select a GPU runtime for faster full training.
+
+```powershell
+python run_final_training.py --fresh-model-b --output results/final_reproduction
+```
+
+The final notebook is self-contained for training. The CLI loads shared definitions from `EN3150_A03.ipynb`. Both locate an existing RealWaste copy, and the notebook can download the official UCI archive when data is missing. See [TRAINING_GUIDE.md](TRAINING_GUIDE.md) for the final workflow and [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) for earlier tuning experiments.
+
+## Experiment history
 
 ## Controlled horizontal-flip experiment
 

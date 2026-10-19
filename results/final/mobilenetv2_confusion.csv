@@ -1,0 +1,10 @@
+,Cardboard,Food Organics,Glass,Metal,Miscellaneous Trash,Paper,Plastic,Textile Trash,Vegetation
+Cardboard,64,1,0,0,0,2,2,0,0
+Food Organics,2,51,0,1,3,0,1,1,3
+Glass,2,0,40,8,1,0,12,0,0
+Metal,2,0,1,95,6,1,10,3,0
+Miscellaneous Trash,0,3,0,6,50,0,9,6,1
+Paper,6,0,0,3,3,58,4,1,0
+Plastic,6,2,6,17,7,1,99,0,0
+Textile Trash,0,0,0,1,4,4,2,37,0
+Vegetation,0,2,0,0,4,0,0,0,59

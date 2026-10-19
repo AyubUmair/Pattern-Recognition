@@ -23,6 +23,15 @@ ROOT = Path(__file__).resolve().parent
 NOTEBOOK = ROOT / "EN3150_A03.ipynb"
 
 
+def source_revision():
+    if not (ROOT / ".git").exists():
+        return None
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+
 def notebook_namespace(notebook):
     namespace = {"__name__": "optimizer_notebook"}
     for index, cell in enumerate(notebook["cells"]):
@@ -143,7 +152,7 @@ def main():
     result["data_pipeline"] = "64x64 normalized tensors cached in RAM; no augmentation"
     result["split_seed"] = 42
     result["cpu_threads"] = args.threads
-    result["base_commit"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    result["base_commit"] = source_revision()
     sources = ["".join(cell.get("source", [])) for cell in notebook["cells"]]
     result["notebook_source_sha256"] = hashlib.sha256(json.dumps(sources).encode("utf-8")).hexdigest()
     result["split_indices"] = {
