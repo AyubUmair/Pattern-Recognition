@@ -1,3 +1,0 @@
-name,horizontal_flip_probability,best_epoch,best_val_accuracy,val_loss_at_best_epoch,mean_epoch_seconds
-No augmentation,0.0,26,0.6928471248246845,0.8794035584695877,3.906826846662443
-Horizontal flip (p=0.5),0.5,30,0.6886395511921458,0.8946696062576219,2.9238774866758224

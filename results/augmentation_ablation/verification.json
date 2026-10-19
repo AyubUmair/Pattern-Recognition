@@ -1,9 +1,0 @@
-{
-  "strict_reload": true,
-  "state_fingerprint_matches": true,
-  "finite_weights_and_logits": true,
-  "confusion_matrix_and_metrics_match": true,
-  "test_images_reevaluated": 713,
-  "checkpoint_sha256": "8f7b51c54a367f08faebec959df6ddf31e250c3bac3ea9b8cd2f5dae67f93fc0",
-  "historical_checkpoint_bytes_match": true
-}

@@ -1,9 +1,0 @@
-# Final handoff
-
-1. Agree on the report dataset as a group. This final notebook and the included LaTeX tables use RealWaste. The friend's `EN3150_A03_new.ipynb` uses digits and remains preserved in the repository. Choose one dataset for the submitted report and code; do not combine their metrics.
-2. For RealWaste, use `EN3150_A03_Final.ipynb`. Its recorded outputs contain the final measured results for Model A, Model B, MobileNetV2 and EfficientNet-B0. The LaTeX table input is `results/final/report_tables.tex`; read `results/final/notes_for_report.md` for settings and caveats.
-3. Merge the pull request from `hakam/assignment-improvements` into `main` after the group reviews the final notebook. The friend's latest main-branch notebook has already been incorporated into this branch; no manual copying between notebooks is required. Merging publishes this final version on the shared main branch. Do not replace the friend's digits metrics with RealWaste metrics inside that separate notebook.
-4. Upload the report PDF and code separately to Moodle. A code bundle is provided at `submission/EN3150_A03_RealWaste_Code.zip`. Rename uploads to the required `GROUP_A03_EN3150` format and put the group number, names and student/index numbers in the LaTeX report. Only one group submission is required.
-5. Include your GitHub profile [hakammra](https://github.com/hakammra) and the [shared repository](https://github.com/AyubUmair/Pattern-Recognition) in the report, add any other required member profiles, and confirm the group's selected dataset has been registered in the assignment's dataset sheet.
-
-The training data, environment, pretrained weights and trained checkpoint binaries are not in the code ZIP. The notebook and scripts recreate them. Plots, metric records and source provenance are included. Opening the saved notebook does not require rerunning training.

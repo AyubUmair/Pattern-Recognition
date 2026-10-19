@@ -1,2 +1,0 @@
-model,total_parameters,trainable_parameters_final_stage,tensor_storage_kib,checkpoint_file_kib,estimated_conv_linear_macs,epochs_completed,mean_epoch_seconds,test_accuracy,weighted_precision,weighted_recall,weighted_f1,macro_precision,macro_recall,macro_f1
-Model B,9033,9033,36.69140625,45.13671875,1059392,30,57.04969177666741,0.667601683029453,0.6557648510316039,0.667601683029453,0.6526257475517715,0.6716816920239331,0.6522742829507039,0.6507498193136204
