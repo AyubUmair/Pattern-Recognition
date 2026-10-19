@@ -13,4 +13,4 @@ RealWaste contains 4,752 images across nine classes. Inputs are RGB at 64 by 64 
 
 Training histories, metrics, plots and resource calculations are in [results/final](results/final). Python dependencies are listed in [requirements.txt](requirements.txt).
 
-[EN3150_A03_new.ipynb](EN3150_A03_new.ipynb) contains the separate handwritten digits experiment contributed by Ahamed A.M.S. [EN3150_A03.ipynb](EN3150_A03.ipynb) is the original RealWaste notebook. Both are retained alongside the final version.
+[EN3150_A03_new.ipynb](EN3150_A03_new.ipynb) contains the separate handwritten digits experiment. [EN3150_A03.ipynb](EN3150_A03.ipynb) is the original RealWaste notebook. Both are retained alongside the final version.
